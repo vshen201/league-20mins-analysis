@@ -1,4 +1,4 @@
-# League 20-Minutes Analysis
+# Are League Games Decided at 20 Minutes, Even in Pro Play?
 
 In this analysis, I explore various aspects of League of Legends games, particularly focusing on data collected at the 20-minute mark. I investigate key trends and insights, such as champion performance, counterpicks, and pick order. This analysis can inform strategic decisions based on the team's composition and champions' matchups.
 
