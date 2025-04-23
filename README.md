@@ -7,6 +7,13 @@
  frameborder="0"
  ></iframe>
 
+ <iframe
+ src="assets/pickorder.html"
+ width="800"
+ height="600"
+ frameborder="0"
+ ></iframe>
+
 | champion   |   winrate |
 |:-----------|----------:|
 | Naafiri    |     85.71 |
