@@ -30,7 +30,7 @@ Head of final cleaned dataframe:
 
 ## **Counterpick Winrates**
 
-One of the main focuses of this analysis is the counterpick winrate. I calculated the winrate of champions when they were selected to counter another champion in specific matchups. This is useful for identifying champions that tend to perform well when played against certain opponents.
+One of the previous main focuses of this analysis was counterpick winrate. I calculated the winrate of champions when picked after the opposing champion of the same role. This has strategic implications because different champions often have weaknesses (think Fire Water Grass like Pokemon, but noticeably more complicated). This is useful for identifying champions that tend to perform well when played against certain opponents.
 
 Here is an interactive plot displaying the counterpick winrates of champions:
 
@@ -41,11 +41,21 @@ Here is an interactive plot displaying the counterpick winrates of champions:
  frameborder="0"
  ></iframe>
 
-From the plot, I observed which champions consistently have high winrates when selected as counterpicks against specific champions, providing insight into their effectiveness in those matchups.
+In this plot, you can see that counterpicking can have a significant impact on chances of victory, depending on the champion used to counter.
+
+To create this plot, I filtered for counterpicks, grouped by champions, then took the average of wins to get a win rate. The aggregate table used for this is shown below:
+
+| Champion   |   Winrate (%) |
+|:-----------|--------------:|
+| Naafiri    |     85.71     |
+| Ambessa    |     83.33     |
+| Kayn       |     71.43     |
+| Elise      |     66.67     |
+| Vel'Koz    |     66.67     |
 
 ## **Pick Order by Role**
 
-Another important factor in team composition is the order in which champions are picked for each role. The pick order can impact the overall composition and balance of the teams. For instance, certain roles may prioritize certain champions over others depending on their effectiveness in the current meta or synergy with other champions.
+Another important factor in team composition is the order in which champions are picked for each role, because it determines which roles on a team have to expose themselves first.
 
 The following interactive plot illustrates the pick order across different roles:
 
@@ -56,36 +66,5 @@ The following interactive plot illustrates the pick order across different roles
  frameborder="0"
  ></iframe>
 
-By examining this plot, I gained an understanding of which champions are most commonly prioritized in each role, helping to inform strategies on champion selection during drafts.
+The median values give lots of insight into how teams generally approach drafting roles. There's a general trend towards picking the top laner later in the draft, while securing bot laner and jungler roles early. A basic interpretation of this could be that getting counterpicked in bot and jungle matchups is not as impactful as getting counterpicked in top, mid, or support.
 
-## **Top 5 Champions by Winrate**
-
-To further explore champion performance, I examined the top 5 champions with the highest winrates in the dataset. This can reveal which champions are currently performing well and may be valuable picks in future games.
-
-Here is the table of the top 5 champions based on their winrate:
-
-| Champion   |   Winrate (%) |
-|:-----------|--------------:|
-| Naafiri    |     85.71     |
-| Ambessa    |     83.33     |
-| Kayn       |     71.43     |
-| Elise      |     66.67     |
-| Vel'Koz    |     66.67     |
-
-These champions have demonstrated consistent performance, winning a high percentage of their games, making them strong candidates for selection in future matchups.
-
-## **Key Insights and Next Steps**
-
-- **Counterpick Analysis**: Identifying champions with high winrates against specific counterpicks can help adjust strategies by focusing on counterpicks in the draft phase.
-  
-- **Pick Order Trends**: By understanding which champions are prioritized in the pick order for each role, I can make more informed decisions during champion selection. Prioritizing high-performing champions or those that synergize well with other picks can improve overall team composition.
-  
-- **Top Performing Champions**: The table of top-performing champions highlights some champions that are currently performing exceptionally well. Incorporating these champions into future team compositions may lead to better performance and outcomes.
-
-## **Conclusion**
-
-This analysis provides valuable insights into champion performance at the 20-minute mark, focusing on counterpicks, pick order, and winrate data. By utilizing this information, I can make more informed decisions during drafts, improving my chances of success in League of Legends. Future analyses can delve deeper into specific champion interactions, more granular match statistics, or explore different gameplay phases for a broader understanding of performance trends.
-
----
-
-This analysis lays the foundation for improving team compositions and game strategies based on data-driven insights. The interactive plots and tables help visualize key trends and allow for better decision-making when selecting champions and strategizing for matchups.
