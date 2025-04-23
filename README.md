@@ -1,10 +1,11 @@
 # Are League Games Decided at 20 Minutes, Even in Pro Play?
 
+## **Introduction**
 In this analysis, I explore various aspects of League of Legends games at the professional level, particularly focusing on data collected at the 20-minute mark. League of Legends is (unfortunately)
 an incredibly popular game, with the highest level of competition drawing in tens of thousands of viewers
 around the world. With so many fans invested in outcomes of games, I wondered: "how feasible is it to predict the outcomes of games at the highest level?"
 
-## **Data Cleaning Process**
+## **Data Cleaning and Exploratory Data Analysis**
 
 Before diving into the analysis, I cleaned the data to ensure that results could be more reliable. The key steps involved in cleaning the data are outlined below:
 
@@ -43,7 +44,7 @@ Here is an interactive plot displaying the counterpick winrates of champions:
 
 In this plot, you can see that counterpicking can have a significant impact on chances of victory, depending on the champion used to counter.
 
-To create this plot, I filtered for counterpicks, grouped by champions, then took the average of wins to get a win rate. The aggregate table used for this is shown below:
+To create this plot, I filtered for counterpicks, grouped by champions, then took the average of wins to get a win rate. Some rows of the aggregate table used for this are shown below:
 
 | Champion   |   Winrate (%) |
 |:-----------|--------------:|
@@ -68,3 +69,33 @@ The following interactive plot illustrates the pick order across different roles
 
 The median values give lots of insight into how teams generally approach drafting roles. There's a general trend towards picking the top laner later in the draft, while securing bot laner and jungler roles early. A basic interpretation of this could be that getting counterpicked in bot and jungle matchups is not as impactful as getting counterpicked in top, mid, or support.
 
+## **Framing a Prediction Problem**
+The prediction problem this model aims to solve is: "Given performance metrics 20 minutes into a game, which team will win?". This is a binary classification problem, since there are two teams and exactly one of them must win. The response variable is the outcome of the game. Accuracy is the metric used to evaluate the model because there should be a fairly even distribution between wins and losses across the dataset. 
+
+## **Baseline Model**
+For my baseline model, I used a **Logistic Regression** classifier to predict whether a team would win a game based on performance metrics taken at the 20-minute mark. 
+
+### Features Used
+The input features consisted of various champion-level metrics from both teams.
+
+- **Kills, Assists, and Deaths at 20 minutes** per role
+- **Gold difference, XP difference, and CS difference at 20 minutes** per role
+- **Game length**
+
+In total, there were 46 features. All of them were quantitative, so no encodings were needed.
+
+### Performance
+On a training set of about 6000 games, the model had 78.72% accuracy. Its test accuracy was 80.25%. These results suggest the model is doing noticeably better than random guessing (which would probably be hovering around 50% +- 10%). The model is just under what I'd consider good, because there's still plenty of factors to consider that could affect the outcome of a game.
+
+## **Final Model**
+For my final model, I chose to incorporating feature selection, standardization, and hyperparameter tuning. Specifically, I added the following elements:
+
+- **StandardScaler**: Normalize the feature values, ensuring the logistic regression model performs well since it is sensitive to the scale of the input data. This matters most for gamelength (which is in seconds) as well as the performance metrics for the support role, because it's extremely rare for supports to have anywhere near as many resources as the rest of the roles on the team. 
+- **SelectKBest (f_classif)**: Select the top 15 features most correlated with the target variable. This helps remove irrelevant or noisy features, improving generalization.
+- **LogisticRegression with GridSearchCV**: Search for the best regularization strength (`C` parameter) across multiple values using 5-fold cross-validation.
+
+I believe these features improved my model’s performance because the feature selection process explicitly chooses variables with the strongest statistical relationship to the outcome. This aligns well with the data generating process, where some champion performance metrics at 20 minutes are more predictive of game outcomes than others.
+
+### Performance
+Using the same training and test sets, the final model had 78.55% training accuracy. Its test accuracy was 80.30%. The best performing hyperparamter value was `C`=0.1.
+The final model showed an improvement over the baseline model in test performance, which indicates better generalization as the test set is unseen data to the model. I'd consider this an improvement because ultimately the goal of a model is to predict for unseen data.
