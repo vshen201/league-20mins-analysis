@@ -6,3 +6,11 @@
  height="600"
  frameborder="0"
  ></iframe>
+
+| champion   |   winrate |
+|:-----------|----------:|
+| Naafiri    |     85.71 |
+| Ambessa    |     83.33 |
+| Kayn       |     71.43 |
+| Elise      |     66.67 |
+| Vel'Koz    |     66.67 |
