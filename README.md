@@ -28,7 +28,7 @@ Head of final cleaned dataframe:
 | 2 | 2 | 0 | 0 | 1 | 3 | 3 | 2 | 4 | 3 | 1 | 3 | 1 | 3 | 0 | 0 | 1 | 5 | 1 | 1 | 5 | 7 | 2 | 4 | 2 | 1 | 1 | 1 | 1 | 1 | -915 | -299 | 386 | 1874 | 1735 | -757 | -1120 | -574 | 2203 | 603 | -134 | -23 | 23 | 142 | 34 | 2075 |
 
 
-## **Counterpick Winrates**
+### **Counterpick Winrates**
 
 One of the previous main focuses of this analysis was counterpick winrate. I calculated the winrate of champions when picked after the opposing champion of the same role. This has strategic implications because different champions often have weaknesses (think Fire Water Grass like Pokemon, but noticeably more complicated). This is useful for identifying champions that tend to perform well when played against certain opponents.
 
@@ -53,7 +53,7 @@ To create this plot, I filtered for counterpicks, grouped by champions, then too
 | Elise      |     66.67     |
 | Vel'Koz    |     66.67     |
 
-## **Pick Order by Role**
+### **Pick Order by Role**
 
 Another important factor in team composition is the order in which champions are picked for each role, because it determines which roles on a team have to expose themselves first.
 
